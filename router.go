@@ -32,8 +32,8 @@ func setupRouter() {
 		redisConn,
 	}
 
-	r.HandleFunc("/booking", api.GetBookingHandler(bookingService)).Methods(http.MethodGet)
 	r.HandleFunc("/booking", api.CreateBookingHandler(bookingService)).Methods(http.MethodPost)
+	r.HandleFunc("/booking/{id}", api.GetBookingHandler(bookingService)).Methods(http.MethodGet)
 	http.Handle("/", r)
 
 	srv := &http.Server{
